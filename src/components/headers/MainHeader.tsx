@@ -5,7 +5,7 @@ const MainHeader = () => {
   return (
     <header>
       <div className="container">
-        <div className="">
+        <div className="header_nav h-[100px] flex items-center">
           <Logo />
         </div>
       </div>
