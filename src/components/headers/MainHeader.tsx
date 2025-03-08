@@ -4,11 +4,13 @@ import { useState, useEffect } from "react"
 import Logo from "@/components/elements/logo/Logo"
 import Modal from "@/components/elements/modal/Modal"
 import { LoginForm, SignupForm } from "@/components/auth/AuthForms"
+import { Search } from "lucide-react"
 
 const MainHeader = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,27 +22,73 @@ const MainHeader = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Implement search functionality here
+    console.log('Searching for:', searchQuery);
+  };
+
   return (
     <>
       <header className={cn("w-full", isSticky && "!fixed top-0 z-40 transition-all bg-white h-[80px] shadow-sm")}>
-        <div className="container">
-          <div className="header_nav h-[100px] flex items-center justify-between">
-            <Logo />
-            <div className="flex items-center gap-4">
+        <div className="container mx-auto px-4">
+          <div className={cn(
+            "header_nav flex items-center justify-between",
+            isSticky ? "h-[80px]" : "h-[100px]"
+          )}>
+            {/* Logo */}
+            <div className="flex-shrink-0 mr-4">
+              <Logo />
+            </div>
+            
+            {/* Search bar - takes only needed space */}
+            <div className="hidden md:block flex-grow max-w-md mx-4">
+              <form onSubmit={handleSearch} className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Search size={16} className="text-gray-400" />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full bg-gray-100 pl-9 pr-3 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-colors"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </form>
+            </div>
+            
+            {/* Auth buttons */}
+            <div className="flex items-center space-x-2">
               <button
                 onClick={() => setShowLoginModal(true)}
-                className="px-4 py-2 text-gray-700 hover:text-gray-900 font-medium"
+                className="px-3 py-2 text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap"
               >
                 Log in
               </button>
               <button
                 onClick={() => setShowSignupModal(true)}
-                className="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium"
+                className="px-3 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium text-sm whitespace-nowrap"
               >
                 Sign up
               </button>
             </div>
           </div>
+        </div>
+        
+        {/* Mobile search bar - only visible on small screens */}
+        <div className="md:hidden px-4 pb-3">
+          <form onSubmit={handleSearch} className="relative">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search size={16} className="text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-full bg-gray-100 pl-9 pr-3 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-white transition-colors"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
         </div>
       </header>
 
