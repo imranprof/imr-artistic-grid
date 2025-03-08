@@ -6,7 +6,7 @@ const Logo = () => {
       <Image alt="logo" src="/assets/imgs/logo/logo_dark.png"
       width={598}
       height={363}
-      className="h-auto w-auto max-h-full"
+      className="h-auto w-auto max-h-[100px]"
       priority
       />
     </div>
