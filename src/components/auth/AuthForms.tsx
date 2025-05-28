@@ -1,14 +1,28 @@
 import { useState } from 'react';
+import {login, signup} from "@/lib/api"
 
-export const LoginForm = () => {
+
+type LoginFormProps = {
+  setShowLoginModal?: (show: boolean) => void;
+}
+export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
+    
+    try{
+      const res = await login({username: formData.email, password: formData.password});
+      console.log('Login successful:', res.user);
+      setShowLoginModal?.(false);
+    }
+    catch (error){
+      console.error('Login failed:', error);
+      
+    }
   };
 
   return (
@@ -43,16 +57,26 @@ export const LoginForm = () => {
   );
 };
 
-export const SignupForm = () => {
+type SignupFormProps = {
+  setShowSignupModal?: (show: boolean) => void; }
+
+export const SignupForm = ({setShowSignupModal}:SignupFormProps) => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     username: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
+    try {
+      const res = await signup(formData);
+      console.log('Signup successful:', res);
+      setShowSignupModal?.(false);
+    }
+    catch (error) {
+      console.error('Signup failed:', error);
+    }
   };
 
   return (

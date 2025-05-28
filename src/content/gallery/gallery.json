@@ -5,112 +5,112 @@
       "path": "/assets/imgs/gallery/img-1.jpg",
       "title": "Sweet Innocence",
       "description": "A candid portrait of a little girl with a bright smile",
-      "hashtags": ["#childportrait", "#innocence", "#happiness", "#childhood"]
+      "hashtags": ["childportrait", "innocence", "happiness", "childhood"]
     },
     {
       "id": 2,
       "path": "/assets/imgs/gallery/img-2.jpg",
       "title": "Playful Moments",
       "description": "Little girl enjoying a carefree moment in nature",
-      "hashtags": ["#kidsphotography", "#childhood", "#naturallight", "#joy"]
+      "hashtags": ["kidsphotography", "childhood", "naturallight", "joy"]
     },
     {
       "id": 3,
       "path": "/assets/imgs/gallery/img-3.jpg",
       "title": "Abstract Dreams",
       "description": "Original artwork featuring vibrant colors and flowing forms",
-      "hashtags": ["#originalart", "#abstractart", "#modernart", "#artisticexpression"]
+      "hashtags": ["originalart", "abstractart", "modernart", "artisticexpression"]
     },
     {
       "id": 4,
       "path": "/assets/imgs/gallery/img-4.jpg",
       "title": "Gentle Spirit",
       "description": "Portrait of a young girl with a thoughtful expression",
-      "hashtags": ["#childportrait", "#naturalbeauty", "#portraitphotography"]
+      "hashtags": ["childportrait", "naturalbeauty", "portraitphotography"]
     },
     {
       "id": 5,
       "path": "/assets/imgs/gallery/img-5.jpg",
       "title": "Creative Flow",
       "description": "Abstract artwork showcasing unique artistic style",
-      "hashtags": ["#artworks", "#contemporaryart", "#creativity", "#artisticvision"]
+      "hashtags": ["artworks", "contemporaryart", "creativity", "artisticvision"]
     },
     {
       "id": 6,
       "path": "/assets/imgs/gallery/img-6.jpg",
       "title": "Pure Joy",
       "description": "Capturing a little girl's laughter and happiness",
-      "hashtags": ["#childhoodmemories", "#happiness", "#purejoyphotography"]
+      "hashtags": ["childhoodmemories", "happiness", "purejoyphotography"]
     },
     {
       "id": 7,
       "path": "/assets/imgs/gallery/img-7.jpg",
       "title": "Artistic Expression",
       "description": "Original artwork with bold strokes and unique perspective",
-      "hashtags": ["#originalartwork", "#artisticstyle", "#creativeexpression"]
+      "hashtags": ["originalartwork", "artisticstyle", "creativeexpression"]
     },
     {
       "id": 8,
       "path": "/assets/imgs/gallery/img-8.jpg",
       "title": "Precious Moments",
       "description": "Sweet portrait of a little girl in natural setting",
-      "hashtags": ["#childphotography", "#precious", "#naturallight"]
+      "hashtags": ["childphotography", "precious", "naturallight"]
     },
     {
       "id": 9,
       "path": "/assets/imgs/gallery/img-9.jpg",
       "title": "Color Symphony",
       "description": "Abstract art piece with harmonious color combinations",
-      "hashtags": ["#abstractart", "#colorful", "#artisticvision"]
+      "hashtags": ["abstractart", "colorful", "artisticvision"]
     },
     {
       "id": 10,
       "path": "/assets/imgs/gallery/img-10.jpg",
       "title": "Innocent Dreams",
       "description": "Capturing the wonder in a little girl's eyes",
-      "hashtags": ["#childhoodwonder", "#innocence", "#portraiture"]
+      "hashtags": ["childhoodwonder", "innocence", "portraiture"]
     },
     {
       "id": 11,
       "path": "/assets/imgs/gallery/img-11.jpg",
       "title": "Creative Waves",
       "description": "Dynamic artwork showcasing movement and emotion",
-      "hashtags": ["#artpiece", "#creativity", "#modernart"]
+      "hashtags": ["artpiece", "creativity", "modernart"]
     },
     {
       "id": 12,
       "path": "/assets/imgs/gallery/img-12.jpg",
       "title": "Gentle Soul",
       "description": "Portrait of a little girl with a serene expression",
-      "hashtags": ["#childportrait", "#gentleness", "#beautifulmoments"]
+      "hashtags": ["childportrait", "gentleness", "beautifulmoments"]
     },
     {
       "id": 13,
       "path": "/assets/imgs/gallery/img-13.jpg",
       "title": "Artistic Journey",
       "description": "Original artwork expressing personal artistic vision",
-      "hashtags": ["#artisticjourney", "#originalart", "#creative"]
+      "hashtags": ["artisticjourney", "originalart", "creative"]
     },
     {
       "id": 14,
       "path": "/assets/imgs/gallery/img-14.jpg",
       "title": "Pure Happiness",
       "description": "Candid shot of a little girl's joyful moment",
-      "hashtags": ["#childhoodmemories", "#happiness", "#purejoyphotography"]
+      "hashtags": ["childhoodmemories", "happiness", "purejoyphotography"]
     },
     {
       "id": 15,
       "path": "/assets/imgs/gallery/img-15.jpg",
       "title": "Creative Spirit",
       "description": "Abstract artwork with unique artistic elements",
-      "hashtags": ["#artworks", "#abstractart", "#artisticexpression"]
+      "hashtags": ["artworks", "abstractart", "artisticexpression"]
     },
     {
       "id": 16,
       "path": "/assets/imgs/gallery/img-16.jpg",
       "title": "Sweet Memories",
       "description": "Beautiful portrait capturing childhood innocence",
-      "hashtags": ["#childphotography", "#sweetmoments", "#childhood"]
+      "hashtags": ["childphotography", "sweetmoments", "childhood"]
     }
   ]
 }

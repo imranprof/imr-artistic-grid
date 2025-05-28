@@ -97,7 +97,7 @@ const MainHeader = () => {
         onClose={() => setShowLoginModal(false)}
         title="Welcome back!"
       >
-        <LoginForm />
+        <LoginForm setShowLoginModal={setShowLoginModal}/>
         <p className="text-center mt-4 text-sm text-gray-600">
           Not on IMR Art yet?{' '}
           <button
@@ -117,7 +117,7 @@ const MainHeader = () => {
         onClose={() => setShowSignupModal(false)}
         title="Welcome to IMR Art"
       >
-        <SignupForm />
+        <SignupForm setShowSignupModal={setShowSignupModal}/>
         <p className="text-center mt-4 text-sm text-gray-600">
           Already a member?{' '}
           <button
