@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import {login, signup} from "@/lib/api"
+import { useAuth } from '@/context/AuthContext';
+
 
 
 type LoginFormProps = {
@@ -10,6 +12,7 @@ export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
     email: '',
     password: '',
   });
+  const {setUser} = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -17,6 +20,7 @@ export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
     try{
       const res = await login({username: formData.email, password: formData.password});
       console.log('Login successful:', res.user);
+      setUser(res.user)
       setShowLoginModal?.(false);
     }
     catch (error){
@@ -66,12 +70,16 @@ export const SignupForm = ({setShowSignupModal}:SignupFormProps) => {
     password: '',
     username: '',
   });
+  const {setUser} = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const res = await signup(formData);
       console.log('Signup successful:', res);
+      const loginRes = await login({username: formData.email, password: formData.password});
+      console.log('Sign up and Login successful:', loginRes.user);
+      setUser(loginRes.user)
       setShowSignupModal?.(false);
     }
     catch (error) {
