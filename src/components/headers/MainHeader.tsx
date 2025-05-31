@@ -5,12 +5,16 @@ import Logo from "@/components/elements/logo/Logo"
 import Modal from "@/components/elements/modal/Modal"
 import { LoginForm, SignupForm } from "@/components/auth/AuthForms"
 import { Search } from "lucide-react"
+import { useAuth } from "@/context/AuthContext"
+import UserMenu from "../menu/UserMenu"
 
 const MainHeader = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const {user, logoutUser} = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,8 +61,11 @@ const MainHeader = () => {
               </form>
             </div>
             
-            {/* Auth buttons */}
-            <div className="flex items-center space-x-2">
+            
+            {
+              user ? <UserMenu user={user} onLogout={logoutUser}/> :             
+              
+              <div className="flex items-center space-x-2">
               <button
                 onClick={() => setShowLoginModal(true)}
                 className="px-3 py-2 text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap"
@@ -72,6 +79,7 @@ const MainHeader = () => {
                 Sign up
               </button>
             </div>
+            }
           </div>
         </div>
         
