@@ -1,7 +1,7 @@
 
 import MainHeader from "@/components/headers/MainHeader";
 import "../styles/globals.css";
-
+import { AuthProvider } from "@/context/AuthContext";
 
 export default function RootLayout({
   children,
@@ -12,8 +12,10 @@ export default function RootLayout({
     <html lang="en">
       <body
       >
-        <MainHeader />
-        {children}
+        <AuthProvider>
+          <MainHeader />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
