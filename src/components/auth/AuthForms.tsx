@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {login, signup} from "@/lib/api"
 import { useAuth } from '@/context/AuthContext';
-import { FaSpinner } from "react-icons/fa6";
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 
