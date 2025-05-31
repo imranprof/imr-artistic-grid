@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import {login, signup} from "@/lib/api"
 import { useAuth } from '@/context/AuthContext';
+import { FaSpinner } from "react-icons/fa6";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 
 
@@ -13,14 +15,17 @@ export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
     password: '',
   });
   const {setUser} = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
     try{
       const res = await login({username: formData.email, password: formData.password});
       console.log('Login successful:', res.user);
       setUser(res.user)
+      setIsLoading(false);
       setShowLoginModal?.(false);
     }
     catch (error){
@@ -39,6 +44,7 @@ export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           required
+          disabled = {isLoading}
         />
       </div>
       <div>
@@ -49,13 +55,21 @@ export const LoginForm = ({setShowLoginModal}:LoginFormProps) => {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           required
+          disabled= {isLoading}
         />
       </div>
       <button
         type="submit"
-        className="w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-      >
-        Log in
+        className="w-full py-2 px-4 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors flex gap-[20px] justify-center items-center"
+      disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <AiOutlineLoading3Quarters className="mr-2 h-4 w-4 animate-spin" />
+                  Log In...
+                </>
+              ) : (
+                "Log In"
+              )}
       </button>
     </form>
   );
