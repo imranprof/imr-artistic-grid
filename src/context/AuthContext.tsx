@@ -8,6 +8,7 @@ type AuthContextType = {
   isAuthenticated: boolean;
   setUser: (user: any) => void;
   logoutUser: () => void;
+  loading: boolean;
 };
 
 
@@ -16,6 +17,7 @@ const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   setUser: () => {},
   logoutUser: () => {},
+  loading: true
 });
 
 type AuthProviderProps = {
@@ -24,6 +26,7 @@ type AuthProviderProps = {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(()=>{
     const checkUser = async () =>{
@@ -33,6 +36,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       catch (error) {
         console.log('Not logged in');
+      }
+      finally {
+        setIsLoading(false);
       }
     }
     checkUser();
@@ -49,7 +55,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       user, 
       isAuthenticated: !!user,
       setUser,
-      logoutUser
+      logoutUser,
+      loading
     }}
     >
       {children}

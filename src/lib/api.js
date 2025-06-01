@@ -13,6 +13,7 @@ export const signup = async (formData)=>{
 
 export const logout = async ()=>{
   const res = await axios.post('/api/logout/');
+  console.log(res.data)
   return res.data;
 };
 

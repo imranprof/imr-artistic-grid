@@ -7,6 +7,7 @@ import { LoginForm, SignupForm } from "@/components/auth/AuthForms"
 import { Search } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 import UserMenu from "../menu/UserMenu"
+import { Skeleton } from "@/components/ui/skeleton"
 
 const MainHeader = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -14,7 +15,7 @@ const MainHeader = () => {
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const {user, logoutUser} = useAuth();
+  const { user, logoutUser, isAuthenticated, loading } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +45,7 @@ const MainHeader = () => {
             <div className="flex-shrink-0 mr-4">
               <Logo />
             </div>
-            
+
             {/* Search bar - takes only needed space */}
             <div className="hidden md:block flex-grow max-w-md mx-4">
               <form onSubmit={handleSearch} className="relative">
@@ -60,29 +61,36 @@ const MainHeader = () => {
                 />
               </form>
             </div>
-            
-            
+
+
             {
-              user ? <UserMenu user={user} onLogout={logoutUser}/> :             
-              
-              <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setShowLoginModal(true)}
-                className="px-3 py-2 text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap"
-              >
-                Log in
-              </button>
-              <button
-                onClick={() => setShowSignupModal(true)}
-                className="px-3 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium text-sm whitespace-nowrap"
-              >
-                Sign up
-              </button>
-            </div>
+              loading ? (
+                <div className="flex items-center  space-x-2">
+                  <Skeleton className="h-[35px] w-[35px] rounded-full" />
+                  <Skeleton className="h-[30px] w-[70px] rounded-full" />
+                </div>
+              ) : (
+                isAuthenticated ? <UserMenu user={user} onLogout={logoutUser} /> :
+
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => setShowLoginModal(true)}
+                      className="px-3 py-2 text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap"
+                    >
+                      Log in
+                    </button>
+                    <button
+                      onClick={() => setShowSignupModal(true)}
+                      className="px-3 py-2 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium text-sm whitespace-nowrap"
+                    >
+                      Sign up
+                    </button>
+                  </div>
+              )
             }
           </div>
         </div>
-        
+
         {/* Mobile search bar - only visible on small screens */}
         <div className="md:hidden px-4 pb-3">
           <form onSubmit={handleSearch} className="relative">
@@ -105,7 +113,7 @@ const MainHeader = () => {
         onClose={() => setShowLoginModal(false)}
         title="Welcome back!"
       >
-        <LoginForm setShowLoginModal={setShowLoginModal}/>
+        <LoginForm setShowLoginModal={setShowLoginModal} />
         <p className="text-center mt-4 text-sm text-gray-600">
           Not on IMR Art yet?{' '}
           <button
@@ -125,7 +133,7 @@ const MainHeader = () => {
         onClose={() => setShowSignupModal(false)}
         title="Welcome to IMR Art"
       >
-        <SignupForm setShowSignupModal={setShowSignupModal}/>
+        <SignupForm setShowSignupModal={setShowSignupModal} />
         <p className="text-center mt-4 text-sm text-gray-600">
           Already a member?{' '}
           <button
