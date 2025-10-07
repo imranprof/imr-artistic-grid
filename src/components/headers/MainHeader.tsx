@@ -9,6 +9,7 @@ import { useAuth } from "@/context/AuthContext"
 import UserMenu from "../menu/UserMenu"
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link"
+import { buttonVariants } from "../ui/button"
 
 const MainHeader = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -33,10 +34,17 @@ const MainHeader = () => {
             "header_nav flex items-center justify-between h-20"
           )}>
             {/* Logo */}
-            <div className="flex-shrink-0 mr-4">
+            <div className="flex-shrink-0 mr-4 flex items-center">
               <Link href={"/"}><Logo /></Link>
-
+              <Link
+                href="/explore"
+                className={cn(buttonVariants({ variant: "ghost" }), "rounded-full min-w-[60px] h-12 text-[16px] font-bold")}
+              >
+                Explore
+              </Link>
             </div>
+
+
 
             {/* Search bar - takes only needed space */}
             <div className="hidden md:block flex-grow max-w-md mx-4">
