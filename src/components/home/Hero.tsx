@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 import { Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export function Hero() {
   return (
@@ -18,9 +20,12 @@ export function Hero() {
             favorites and create your own boards.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto">
+            <Link
+              href="/explore"
+              className={cn(buttonVariants({ variant: "default", size: "lg" }), "bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto")}
+            >
               Start Exploring
-            </Button>
+            </Link>
             <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
               Learn More
             </Button>
