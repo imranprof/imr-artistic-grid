@@ -13,12 +13,12 @@ type UserMenuProps = {
 };
 
 const UserMenu = ({ user, onLogout }: UserMenuProps) => {
-  const defaultAavatar = "/assets/imgs/gallery/img-6.jpg";
+  const defaultAavatar = "/assets/imgs/gallery/img-4.jpg";
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
-          {user.avatarUrl ? (
+          {user.avatarUrl || defaultAavatar ? (
             <AvatarImage src={user.avatarUrl || defaultAavatar} alt={user.name || "default"} />
           ) : (
             <AvatarFallback>{"I"}</AvatarFallback>

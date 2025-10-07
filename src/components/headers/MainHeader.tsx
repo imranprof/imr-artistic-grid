@@ -8,24 +8,15 @@ import { Search } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 import UserMenu from "../menu/UserMenu"
 import { Skeleton } from "@/components/ui/skeleton"
+import Link from "next/link"
 
 const MainHeader = () => {
-  const [isSticky, setIsSticky] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
   const { user, logoutUser, isAuthenticated, loading } = useAuth();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollThreshold = 300;
-      setIsSticky(window.scrollY > scrollThreshold);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,17 +24,18 @@ const MainHeader = () => {
     console.log('Searching for:', searchQuery);
   };
 
+
   return (
     <>
-      <header className={cn("w-full", isSticky && "!fixed top-0 z-40 transition-all bg-white h-[80px] shadow-sm")}>
+      <header className={cn("sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60")}>
         <div className="container mx-auto px-4">
           <div className={cn(
-            "header_nav flex items-center justify-between",
-            isSticky ? "h-[80px]" : "h-[100px]"
+            "header_nav flex items-center justify-between h-20"
           )}>
             {/* Logo */}
             <div className="flex-shrink-0 mr-4">
-              <Logo />
+              <Link href={"/"}><Logo /></Link>
+
             </div>
 
             {/* Search bar - takes only needed space */}
