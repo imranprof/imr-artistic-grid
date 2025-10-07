@@ -65,14 +65,14 @@ const MainHeader = () => {
 
             {
               loading ? (
-                <div className="flex items-center  space-x-2">
+                <div className="flex items-center  space-x-2 min-w-[150px]">
                   <Skeleton className="h-[35px] w-[35px] rounded-full" />
                   <Skeleton className="h-[30px] w-[70px] rounded-full" />
                 </div>
               ) : (
-                isAuthenticated ? <UserMenu user={user} onLogout={logoutUser} /> :
+                isAuthenticated ? <div className="min-w-[150px] flex justify-start"><UserMenu user={user} onLogout={logoutUser} /></div> :
 
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 min-w-[150px]">
                     <button
                       onClick={() => setShowLoginModal(true)}
                       className="px-3 py-2 text-gray-700 hover:text-gray-900 font-medium text-sm whitespace-nowrap"
