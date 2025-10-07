@@ -1,7 +1,7 @@
 "use client"
 
-import React, {createContext, useState, useContext, useEffect, ReactNode} from 'react';
-import {getCurrentUser, logout} from "@/lib/api"
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { getCurrentUser, logout } from "@/lib/api"
 
 type AuthContextType = {
   user: any;
@@ -15,8 +15,8 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({
   user: null,
   isAuthenticated: false,
-  setUser: () => {},
-  logoutUser: () => {},
+  setUser: () => { },
+  logoutUser: () => { },
   loading: true
 });
 
@@ -28,10 +28,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setIsLoading] = useState(true);
 
-  useEffect(()=>{
-    const checkUser = async () =>{
+  useEffect(() => {
+    const checkUser = async () => {
+      const hasSession = localStorage.getItem("hasSession");
+
+      if (!hasSession) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
         const data = await getCurrentUser();
+        console.log(data)
         setUser(data);
       }
       catch (error) {
@@ -50,14 +58,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider 
-    value={{
-      user, 
-      isAuthenticated: !!user,
-      setUser,
-      logoutUser,
-      loading
-    }}
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        setUser,
+        logoutUser,
+        loading
+      }}
     >
       {children}
     </AuthContext.Provider>
