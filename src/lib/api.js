@@ -42,3 +42,9 @@ export const getCurrentUser = async () => {
     throw error; // only throw unexpected errors
   }
 };
+
+export const createPost = async (formData) => {
+  const rest = await axios.post("/api/posts/", formData);
+  alert("Post created successfully!");
+  return rest.data;
+};

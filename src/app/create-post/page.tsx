@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import axios from "axios";
+import { createPost } from "@/lib/api";
 
 type FormValues = {
   title: string;
@@ -22,17 +23,15 @@ export default function CreatePostPage() {
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("description", data.description);
-      formData.append("tags", data.tags);
+      // formData.append("tags", data.tags);   //it will skip for now
       if (data.image && data.image.length > 0) {
         formData.append("image", data.image[0]);
       }
 
-      // Replace with your DRF API endpoint
-      await axios.post("/api/posts/", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      // post using api
+      createPost(formData);
 
-      alert("Post created successfully!");
+
       reset();
       setPreview(null);
     } catch (err) {

@@ -69,7 +69,8 @@ const MainHeader = () => {
                   <Skeleton className="h-[30px] w-[70px] rounded-full" />
                 </div>
               ) : (
-                isAuthenticated ? <div className="min-w-[150px] flex justify-start"><UserMenu user={user} onLogout={logoutUser} /></div> :
+                isAuthenticated ? <div className="min-w-[150px] flex justify-between items-center"><UserMenu user={user} onLogout={logoutUser} />
+                  <LinkButton href={"/create-post"} className="bg-primary rounded-full">Create Post</LinkButton></div> :
 
                   <div className="flex items-center space-x-2 min-w-[150px]">
                     <button
