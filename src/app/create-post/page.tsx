@@ -2,8 +2,17 @@
 
 import { useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import axios from "axios";
 import { createPost } from "@/lib/api";
+import { ImageUp } from "lucide-react";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 type FormValues = {
   title: string;
@@ -16,6 +25,7 @@ export default function CreatePostPage() {
   const { register, handleSubmit, control, reset, formState: { errors } } = useForm<FormValues>();
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [isPostSuccess, setIsPostSuccess] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     setLoading(true);
@@ -43,52 +53,52 @@ export default function CreatePostPage() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">Create a Post</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded shadow flex items-stretch justify-between">
+      <div className="w-[60%]">
+        <h1 className="text-2xl font-bold mb-4">Create a Post</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
-        {/* Title */}
-        <div>
-          <label className="block mb-1 font-medium">Title</label>
-          <input
-            {...register("title", { required: true })}
-            className="w-full border rounded px-3 py-2"
-            type="text"
-            placeholder="Enter post title"
-          />
-          {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
-        </div>
+          {/* Title */}
+          <div>
+            <label className="block mb-1 font-medium">Title</label>
+            <input
+              {...register("title", { required: true })}
+              className="w-full border rounded px-3 py-2"
+              type="text"
+              placeholder="Enter post title"
+            />
+            {errors.title && <p className="text-red-500 text-sm">Title is required</p>}
+          </div>
 
-        {/* Description */}
-        <div>
-          <label className="block mb-1 font-medium">Description</label>
-          <textarea
-            {...register("description")}
-            className="w-full border rounded px-3 py-2"
-            rows={4}
-            placeholder="Enter post description"
-          />
-        </div>
+          {/* Description */}
+          <div>
+            <label className="block mb-1 font-medium">Description</label>
+            <textarea
+              {...register("description")}
+              className="w-full border rounded px-3 py-2"
+              rows={4}
+              placeholder="Enter post description"
+            />
+          </div>
 
-        {/* Tags */}
-        <div>
-          <label className="block mb-1 font-medium">Tags (comma-separated)</label>
-          <input
-            {...register("tags")}
-            className="w-full border rounded px-3 py-2"
-            type="text"
-            placeholder="tag1, tag2"
-          />
-        </div>
+          {/* Tags */}
+          <div>
+            <label className="block mb-1 font-medium">Tags (comma-separated)</label>
+            <input
+              {...register("tags")}
+              className="w-full border rounded px-3 py-2"
+              type="text"
+              placeholder="tag1, tag2"
+            />
+          </div>
 
-        {/* Image */}
-        <div>
-          <label className="block mb-1 font-medium">Image</label>
-          <Controller
-            name="image"
-            control={control}
-            render={({ field }) => (
-              <>
+          {/* Image */}
+          <div>
+            <label className="block mb-1 font-medium">Image</label>
+            <Controller
+              name="image"
+              control={control}
+              render={({ field }) => (
                 <input
                   type="file"
                   accept="image/*"
@@ -102,27 +112,37 @@ export default function CreatePostPage() {
                   }}
                   className="w-full"
                 />
-                {preview && (
-                  <img
-                    src={preview}
-                    alt="Preview"
-                    className="mt-2 w-full max-h-64 object-contain rounded border"
-                  />
-                )}
-              </>
-            )}
-          />
-        </div>
 
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
-        >
-          {loading ? "Creating..." : "Create Post"}
-        </button>
-      </form>
+              )}
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-2 px-4 rounded"
+          >
+            {loading ? "Creating..." : "Create Post"}
+          </button>
+        </form>
+      </div>
+
+      <div className="w-[38%] overflow-hidden rounded-md">
+        {preview ? (
+          <img
+            src={preview}
+            alt="Preview"
+            className="w-full object-contain rounded-sm border h-full max-h-[75vh]"
+          />
+        ) :
+          <div className="w-full h-full flex justify-center items-center rounded-sm border flex-col">
+            <ImageUp />
+            <span className="">Image Preview</span>
+          </div>
+        }
+      </div>
+
     </div>
   );
 }
