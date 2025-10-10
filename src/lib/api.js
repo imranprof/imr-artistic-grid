@@ -44,7 +44,14 @@ export const getCurrentUser = async () => {
 };
 
 export const createPost = async (formData) => {
-  const rest = await axios.post("/api/posts/", formData);
+  const rest = await axios.post("/api/posts/create/", formData);
   alert("Post created successfully!");
   return rest.data;
+};
+
+export const getAllPost = async () => {
+  const res = await axios.get("/api/posts");
+  console.log(typeof res.data);
+  console.log("------", res.data);
+  return res.data;
 };
