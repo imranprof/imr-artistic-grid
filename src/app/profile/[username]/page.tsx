@@ -49,7 +49,7 @@ export default function ProfilePage() {
       <div className="flex flex-col items-center text-center space-y-4">
         <div className="relative w-32 h-32">
           <Image
-            src={userProfile.profile.avatar_url || "/default-avatar.png"}
+            src={userProfile.profile.avatar_url || "/assets/imgs/gallery/img-4.jpg"}
             alt={userProfile.username}
             fill
             className="rounded-full object-cover border"
