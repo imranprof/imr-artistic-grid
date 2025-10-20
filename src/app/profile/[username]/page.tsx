@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import axios from "@/lib/axios";
+import HomeArtGallery from "@/components/gallery/HomeArtGallery";
 
 interface UserProfile {
   id: number;
@@ -76,11 +77,12 @@ export default function ProfilePage() {
       </div>
 
       {/* Posts Section */}
-      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-5xl">
-        {/* Replace with real posts */}
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="bg-gray-200 aspect-square rounded-lg" />
-        ))}
+      <div className="container mt-10">
+        <div className=" text-[18px] font-medium mb-5 flex justify-center gap-5">
+          <span className="cursor-pointer border-b-[2px] border-black">Created</span>
+          <span className="cursor-pointer">Saved</span>
+        </div>
+        <HomeArtGallery />
       </div>
     </div>
   );
