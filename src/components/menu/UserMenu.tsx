@@ -2,11 +2,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { LogOut, Settings, HelpCircle } from "lucide-react";
+import Link from "next/link";
 
 type UserMenuProps = {
   user: {
     name: string;
     email: string;
+    username: string;
     avatarUrl?: string;
   };
   onLogout: () => void;
@@ -33,7 +35,7 @@ const UserMenu = ({ user, onLogout }: UserMenuProps) => {
         </div>
 
         <DropdownMenuItem>
-          Profile
+          <Link href={`/profile/${user.username}`}>Profile</Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem>
